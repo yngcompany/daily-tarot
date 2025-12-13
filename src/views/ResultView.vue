@@ -7,7 +7,7 @@
         <div class="card-block" v-for="c in selectedCards" :key="c.id">
           <div class="card-name">{{ c.kname || c.name }}</div>
           <div class="card-short">{{ c.short }}</div>
-          <div class="hint">{{ c.categoryHints[mode] }}</div>
+          <div class="hint">{{ c.categoryHints[mode as keyof typeof c.categoryHints] || '힌트 없음' }}</div>
         </div>
       </div>
 
