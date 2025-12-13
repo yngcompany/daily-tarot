@@ -7,7 +7,7 @@
         <div class="card-block" v-for="c in selectedCards" :key="c.id">
           <div class="card-name">{{ c.kname || c.name }}</div>
           <div class="card-short">{{ c.short }}</div>
-          <div class="hint">{{ c.categoryHints[mode as keyof typeof c.categoryHints] || '힌트 없음' }}</div>
+          <div class="hint">{{ c.categoryHints[mode] || '힌트 없음' }}</div>
         </div>
       </div>
 
@@ -30,14 +30,31 @@ import { useRouter, useRoute } from 'vue-router'
 import cardsData from '@/assets/cards.json'
 import { useAppStore } from '@/store/useAppStore'
 import { computed } from 'vue'
+
+// --- 타입 정의 ---
+type CategoryKey = 'love' | 'money' | 'career' | 'health' | 'general'
+
+interface Card {
+  id: string
+  name: string
+  kname?: string
+  short: string
+  core: string
+  categoryHints: Partial<Record<CategoryKey, string>>  // general 포함 가능
+}
+
+
+// --- 스토어 & 라우터 ---
 const store = useAppStore()
 const router = useRouter()
 const route = useRoute()
-const mode = (route.query.mode as string) || 'general'
-const sel = (route.query.sel as string || '').split(',').filter(Boolean)
-const selectedCards = cardsData.filter((c:any)=> sel.includes(c.id))
 
-// 간단한 조합 해석: 카드 속성(core)들을 이어붙여 템플릿으로 만듬
+// --- 쿼리에서 mode & 선택 카드 가져오기 ---
+const mode = (route.query.mode as CategoryKey) || 'general'
+const sel = (route.query.sel as string || '').split(',').filter(Boolean)
+const selectedCards = cardsData.filter((c: Card) => sel.includes(c.id)) as Card[]
+
+// --- 종합 해석: 카드 속성(core)들을 이어붙여 템플릿으로 만듬 ---
 function makeCombined(cards:any[], modeKey:string){
   if(cards.length === 0) return ''
   const parts = cards.map(c => c.core)
@@ -45,9 +62,10 @@ function makeCombined(cards:any[], modeKey:string){
   return `당신은 ${parts[0]}의 상황을 겪은 뒤 ${parts[1]}의 흐름 속에서 행동하고, 결국 ${parts[2]}을(를) 맞이할 가능성이 큽니다. (카테고리: ${modeKey})`
 }
 
-const combinedText = computed(()=> makeCombined(selectedCards as any[], mode))
+const combinedText = computed(() => makeCombined(selectedCards, mode))
 
-function goMain(){ router.push('/') }
+// --- 네비게이션 ---
+function goMain() { router.push('/') }
 
 function retry(){
   // 쿨다운: 팝업으로 권장 30분 안내
@@ -59,7 +77,7 @@ function retry(){
   }
 }
 
-// 저장: 결과 본 시간 저장
+// --- 기록 저장: 결과 본 시간 저장
 store.saveHistory({
   time: (new Date()).toISOString(),
   mode,
