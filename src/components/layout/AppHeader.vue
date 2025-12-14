@@ -22,7 +22,7 @@ defineProps<{
 defineEmits(['back'])
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .app__header {
   height: 8vh;
   display: flex;

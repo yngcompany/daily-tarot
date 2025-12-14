@@ -1,4 +1,9 @@
-export interface TarotCard {
+// src/data/tarotCards.ts
+
+/* ===============================
+   1. 카드 의미 인터페이스
+================================ */
+export interface TarotCardMeaning {
   id: string
   name: string        // 영문 카드명
   kname: string       // 한글 카드명
@@ -12,7 +17,10 @@ export interface TarotCard {
   }
 }
 
-export const MAJOR_ARCANA: TarotCard[] = [
+/* ===============================
+   2. 메이저 아르카나 (22장)
+================================ */
+export const MAJOR_ARCANA: TarotCardMeaning[] = [
   {
     id: 'fool',
     name: 'Fool',
@@ -26,7 +34,6 @@ export const MAJOR_ARCANA: TarotCard[] = [
       health: '기분과 활력이 좋아집니다.'
     }
   },
-
   {
     id: 'magician',
     name: 'Magician',
@@ -41,11 +48,15 @@ export const MAJOR_ARCANA: TarotCard[] = [
     }
   },
 
-  // ... (총 22장)
+  // ⚠️ 나머지 메이저 20장도 여기 계속 추가
 ]
 
+/* ===============================
+   3. 마이너 아르카나 정의
+================================ */
+
 // 4개의 슈트
-export const MINOR_SUITS = [
+const MINOR_SUITS = [
   { key: 'wands', name: 'Wands', kname: '완드' },
   { key: 'cups', name: 'Cups', kname: '컵' },
   { key: 'swords', name: 'Swords', kname: '소드' },
@@ -53,7 +64,7 @@ export const MINOR_SUITS = [
 ] as const
 
 // 14개의 랭크
-export const MINOR_RANKS = [
+const MINOR_RANKS = [
   { key: 'ace', name: 'Ace', kname: '에이스' },
   { key: 'two', name: 'Two', kname: '2' },
   { key: 'three', name: 'Three', kname: '3' },
@@ -70,10 +81,11 @@ export const MINOR_RANKS = [
   { key: 'king', name: 'King', kname: '왕' }
 ] as const
 
-// 카드 수 공식 :
-// 4개의 슈트 (완드, 컵, 소드, 펜타클) X 14개의 랭크 (Ace ~ King) = 56장
-export function createMinorArcana(): TarotCard[] {
-  const cards: TarotCard[] = []
+/* ===============================
+   4. 마이너 아르카나 생성 (56장)
+================================ */
+function createMinorArcana(): TarotCardMeaning[] {
+  const cards: TarotCardMeaning[] = []
 
   for (const suit of MINOR_SUITS) {
     for (const rank of MINOR_RANKS) {
@@ -96,11 +108,19 @@ export function createMinorArcana(): TarotCard[] {
   return cards
 }
 
-export const TAROT_CARDS: TarotCard[] = [
+export const MINOR_ARCANA = createMinorArcana()
+
+/* ===============================
+   5. 전체 78장 의미 데이터
+================================ */
+export const TAROT_MEANINGS: TarotCardMeaning[] = [
   ...MAJOR_ARCANA,
-  ...createMinorArcana()
+  ...MINOR_ARCANA
 ]
 
-console.log('Major:', MAJOR_ARCANA.length)
-console.log('Minor:', createMinorArcana().length)
-console.log('Total:', TAROT_CARDS.length)
+/* ===============================
+   6. 검증 로그
+================================ */
+console.log('Major:', MAJOR_ARCANA.length)   // 22
+console.log('Minor:', MINOR_ARCANA.length)   // 56
+console.log('Total:', TAROT_MEANINGS.length) // 78
