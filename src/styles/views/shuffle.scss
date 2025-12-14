@@ -4,16 +4,137 @@
   display: flex;
   flex-direction: column;
   background: transparent;
+  // background: linear-gradient(to bottom, #453db9, #a078bc, #f0d8e2);
+  background: linear-gradient(to bottom, #2e4a7d, #469cb4, #c2f9ff);
+
+  .bg {
+    &__img {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    &__cloud {
+      display: flex;
+      position: absolute;
+      left: -5.12vw;
+      width: 150%;
+      animation: cloud 10s ease-in-out infinite;
+
+      img {
+        width: 100%;
+      }
+      &--01 {
+        z-index: 40;
+        animation-duration: 10s;
+        path { fill: rgba(247,248,249, 1); }
+      }
+      &--02 {
+        z-index: 35;
+        animation-duration: 11s;
+        path { fill: rgba(214,232, 242, 1); }
+      }
+      &--03 {
+        z-index: 30;
+        animation-duration: 12s;
+        path { fill: rgba(183, 208, 229, 1); }
+      }
+    }
+
+    &__star {
+      position: absolute;
+      z-index: 40;
+      background: url("@/assets/images/main/bg_star.svg") no-repeat center / contain;
+      opacity: 0.3;
+      animation: twinkle 2.6s ease-in-out infinite;
+
+      &--01 {
+        top: 24%;
+        left: 15vw;
+        width: 4vw;
+        height: 5vw;
+        animation-delay: 0s;
+      }
+      &--02 {
+        bottom: 15%;
+        left: 5vw;
+        width: 3vw;
+        height: 4vw;
+        animation-delay: 0.5s;
+      }
+      &--03 {
+        bottom: 12%;
+        right: 6vw;
+        width: 3vw;
+        height: 4vw;
+        animation-delay: 1s;
+      }
+      &--04 {
+        bottom: 15%;
+        right: 12vw;
+        width: 2.5vw;
+        height: 4vw;
+        animation-delay: 1.5s;
+      }
+      &--05 {
+        top: 42%;
+        right: 9vw;
+        width: 2.5vw;
+        height: 4vw;
+        animation-delay: 2s;
+      }
+	    &--06 {
+        top: 36%;
+		    left: 8vw;
+        width: 2vw;
+        height: 3vw;
+        animation-delay: 2.2s;
+      }
+	    &--07 {
+        top: 32%;
+		    right: 6.2vw;
+        width: 2vw;
+        height: 3vw;
+        animation-delay: 2.2s;
+      }
+      &--08 {
+        top: 74.5%;
+		    right: 7vw;
+        width: 2vw;
+        height: 3vw;
+        animation-delay: 2.2s;
+      }
+      &--09 {
+        top: 76%;
+		    left: 12.6vw;
+        width: 2vw;
+        height: 3vw;
+        animation-delay: 2.2s;
+      }
+    }
+
+    &__parallax {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      will-change: transform;
+      pointer-events: none;
+      width: 100%;
+      transform: translateY(var(--parallax-y, 0px));
+    }
+  }
 }
 
 .deck {
   &__wrap {
     flex: 1;            /* ← 남는 공간 전부 */
     overflow: hidden;  /* ← 카드 튀어나오는 거 방지 */
-    padding: 6vw;
+    padding: 15vw 6vw 40vw;
   }
   &__area {
-    flex: 1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2vw;
+    flex: 1; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 2vw;
     position: relative; width: 100%;
     opacity: 1;
     transform: translateY(0);
@@ -99,7 +220,7 @@
 @media (min-width: 390px) {
   .deck {
     &__area {
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(6, minmax(0, 1fr));
     }
   }
 }
@@ -107,7 +228,7 @@
 @media (min-width: 768px) {
   .deck {
     &__area {
-      grid-template-columns: repeat(6, minmax(0, 1fr));
+      grid-template-columns: repeat(7, minmax(0, 1fr));
     }
   } 
 }

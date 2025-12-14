@@ -1,102 +1,154 @@
 .main {
   position: relative;
   min-height: 100dvh;
-  // background: linear-gradient(to bottom, #68bbf3 0%, #f7f8f9 40%);
-	background: #f7f8f9;
+  background: #f7f8f9;
   overflow-x: hidden;
 
-  
-	.bg {
-		&__gradient {
-			position: absolute;
-			inset: 0;
-		}
-		&__img {
-			position: relative; width: 100%; height: 52vh;
-			background: #69B1E2 url('@/assets/images/main/bg_clouds_full.svg') no-repeat center bottom / 105%;
-		}
-		
-		// &__cloud {
-		//   position: absolute;
-		//   animation: cloud 8s ease-in-out infinite;
+  .bg {
+    &__img {
+      position: relative;
+      width: 100%;
+      height: 52vh;
+      background: linear-gradient(to bottom, #2e4a7d, #469cb4, #c2f9ff);
+		// background: linear-gradient(to bottom, #453db9, #a078bc, #f0d8e2);
+      display: flex;
+      align-items: flex-end;
+    }
 
-		//   &--01 {
-		//     z-index: 30;
-		//     bottom: 0;
-		//     left: -6vw;
-		//     animation-duration: 9s;
-		//     width: 120vw;
-		// 		height: 20vh;
-		//     background: url("@/assets/images/main/bg_cloud_01.svg") no-repeat
-		//       center / contain;
-		//   }
-		//   &--02 {
-		//     z-index: 20;
-		//     bottom: 0;
-		//     right: -5vw;
-		//     animation-duration: 11s;
-		//     width: 72vw;
-		// 		height: 28vw;
-		//     background: url("@/assets/images/main/bg_cloud_02.svg") no-repeat
-		//       center / contain;
-		//   }
-		//   &--03 {
-		//     z-index: 10;
-		//     bottom: 0;
-		//     left: -50%;
-		//     animation-duration: 10s;
-		//     width: 120vw;
-		//     height: 15vw;
-		//     background: url("@/assets/images/main/bg_cloud_03.svg") no-repeat
-		//       center / contain;
-		//   }
-		// }
+    &__cloud {
+      display: flex;
+      position: absolute;
+      left: -5.12vw;
+      width: 150%;
+      animation: cloud 10s ease-in-out infinite;
 
-		&__star {
-			position: absolute; z-index: 40;
-			background: url('@/assets/images/main/bg_star.svg') no-repeat center / contain;
-			opacity: 0.3;
-			animation: twinkle 2.6s ease-in-out infinite;
+      img {
+        width: 100%;
+      }
+      &--01 {
+        z-index: 40;
+        animation-duration: 10s;
+        path { fill: rgba(247,248,249, 1); }
+      }
+      &--02 {
+        z-index: 35;
+        animation-duration: 11s;
+        path { fill: rgba(214,232, 242, 1); }
+      }
+      &--03 {
+        z-index: 30;
+        animation-duration: 12s;
+        path { fill: rgba(183, 208, 229, 1); }
+      }
+    }
 
-			&--01 {  top: 24%; left: 15vw; width: 4vw; height: 5vw; animation-delay: 0s; }
-			&--02 {  bottom: 15%; left: 5vw; width: 3vw; height: 4vw; animation-delay: 0.5s; }
-			&--03 {  bottom: 12%; right: 6vw; width: 3vw; height: 4vw; animation-delay: 1s; }
-			&--04 {  bottom: 15%; right: 12vw; width: 2.5vw; height: 4vw; animation-delay: 1.5s; }
-			&--05 {  top: 42%; right: 9vw; width: 2.5vw; height: 4vw; animation-delay: 2s; }
-		}
+    &__star {
+      position: absolute;
+      z-index: 40;
+      background: url("@/assets/images/main/bg_star.svg") no-repeat center / contain;
+      opacity: 0.3;
+      animation: twinkle 2.6s ease-in-out infinite;
 
-		&__parallax {
-			position: fixed;
-			inset: 0;
-			z-index: 0;
-			will-change: transform;
-			pointer-events: none;
-			width: 100%;
-			// height: 50vh;
-			// border: 1px solid red;
+      &--01 {
+        top: 24%;
+        left: 15vw;
+        width: 4vw;
+        height: 5vw;
+        animation-delay: 0s;
+      }
+      &--02 {
+        bottom: 15%;
+        left: 5vw;
+        width: 3vw;
+        height: 4vw;
+        animation-delay: 0.5s;
+      }
+      &--03 {
+        bottom: 12%;
+        right: 6vw;
+        width: 3vw;
+        height: 4vw;
+        animation-delay: 1s;
+      }
+      &--04 {
+        bottom: 15%;
+        right: 12vw;
+        width: 2.5vw;
+        height: 4vw;
+        animation-delay: 1.5s;
+      }
+      &--05 {
+        top: 42%;
+        right: 9vw;
+        width: 2.5vw;
+        height: 4vw;
+        animation-delay: 2s;
+      }
+	    &--06 {
+        top: 36%;
+		    left: 8vw;
+        width: 2vw;
+        height: 3vw;
+        animation-delay: 2.2s;
+      }
+	    &--07 {
+        top: 32%;
+		    right: 6.2vw;
+        width: 2vw;
+        height: 3vw;
+        animation-delay: 2.2s;
+      }
+      &--08 {
+        top: 74.5%;
+		    right: 7vw;
+        width: 2vw;
+        height: 3vw;
+        animation-delay: 2.2s;
+      }
+      &--09 {
+        top: 76%;
+		    left: 12.6vw;
+        width: 2vw;
+        height: 3vw;
+        animation-delay: 2.2s;
+      }
+    }
 
-			transform: translateY(var(--parallax-y, 0px));
-		}
-	}
-  
+    &__parallax {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      will-change: transform;
+      pointer-events: none;
+      width: 100%;
+      transform: translateY(var(--parallax-y, 0px));
+    }
+  }
 }
 
 @keyframes twinkle {
-	0%, 100% { opacity: 0.3; transform: scale(1); }
-	50% { opacity: 1; transform: scale(1.2); }
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
 }
 
-// @keyframes cloud {
-//   0% {
-//     transform: translateX(0);
-//   }
-//   50% {
-//     transform: translateX(5vw);
-//   }
-//   100% {
-//     transform: translateX(0);
-//   }
-// }
+@keyframes cloud {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 
 .content {
   padding: 1rem;
@@ -122,7 +174,6 @@
 }
 .cat-row {
   display: grid;
-  // grid-template-columns:repeat(2,1fr);
   gap: 1rem;
   margin-top: 1rem;
 }

@@ -21,7 +21,7 @@ function goSettings(){ router.push('/settings') }
 <style lang="scss" scoped>
 .topbar {
   display:flex; align-items:center; justify-content:space-between;
-  position: relative;
+  position: relative; z-index: 100;
   padding: 2.25vw 3.75vw;
 
   .icon-btn { background:transparent; border:none; cursor:pointer; }

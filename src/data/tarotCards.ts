@@ -1,17 +1,3 @@
-// export interface TarotCard {
-//   id: number
-//   name: string
-//   arcana: 'major' | 'minor'
-//   suit?: 'cups' | 'wands' | 'swords' | 'pentacles'
-// }
-
-// export const TAROT_CARDS: TarotCard[] = [
-//   { id: 0, name: 'The Fool', arcana: 'major' },
-//   { id: 1, name: 'The Magician', arcana: 'major' },
-//   { id: 13, name: 'Death', arcana: 'major' },
-//   // 👉 나중에 78장 전부 채우면 됨
-// ]
-
 export interface TarotCard {
   id: string
   name: string        // 영문 카드명
@@ -58,6 +44,7 @@ export const MAJOR_ARCANA: TarotCard[] = [
   // ... (총 22장)
 ]
 
+// 4개의 슈트
 export const MINOR_SUITS = [
   { key: 'wands', name: 'Wands', kname: '완드' },
   { key: 'cups', name: 'Cups', kname: '컵' },
@@ -65,6 +52,7 @@ export const MINOR_SUITS = [
   { key: 'pentacles', name: 'Pentacles', kname: '펜타클' }
 ] as const
 
+// 14개의 랭크
 export const MINOR_RANKS = [
   { key: 'ace', name: 'Ace', kname: '에이스' },
   { key: 'two', name: 'Two', kname: '2' },
@@ -82,6 +70,8 @@ export const MINOR_RANKS = [
   { key: 'king', name: 'King', kname: '왕' }
 ] as const
 
+// 카드 수 공식 :
+// 4개의 슈트 (완드, 컵, 소드, 펜타클) X 14개의 랭크 (Ace ~ King) = 56장
 export function createMinorArcana(): TarotCard[] {
   const cards: TarotCard[] = []
 
@@ -110,3 +100,7 @@ export const TAROT_CARDS: TarotCard[] = [
   ...MAJOR_ARCANA,
   ...createMinorArcana()
 ]
+
+console.log('Major:', MAJOR_ARCANA.length)
+console.log('Minor:', createMinorArcana().length)
+console.log('Total:', TAROT_CARDS.length)

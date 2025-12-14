@@ -1,7 +1,7 @@
 <template>
-  <footer class="bottom">
-    <p v-if="selectedCount < max">
-      카드를 {{ max }}장 선택해 주세요
+  <footer class="app__bottom">
+    <p class="app__bottom--text" v-if="selectedCount < max">
+      카드를 {{ max }}장 선택해 주세요.
     </p>
 
     <button
@@ -25,9 +25,12 @@ defineEmits<{
 }>()
 </script>
 
-<style>
-.bottom {
-  min-height: 12vh;
-  background: rgba(255, 0, 0, 0.1);
+<style lang="scss">
+.app__bottom {
+  position: fixed; z-index: 100; bottom: 7.2vw; left: 50%; transform: translateX(-50%);
+  padding: 4vw;
+  border-radius: 2vw;
+  background: rgba(36, 37, 80, 0.38);
+  &--text {margin: 0; padding: 0; line-height: 3.5vw; color: #fff; font-size: 3.8vw;}
 }
 </style>
