@@ -49,6 +49,7 @@ export const MAJOR_ARCANA: TarotCardMeaning[] = [
   },
 
   // ⚠️ 나머지 메이저 20장도 여기 계속 추가
+  
 ]
 
 /* ===============================
