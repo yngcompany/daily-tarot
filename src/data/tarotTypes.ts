@@ -10,4 +10,9 @@ export interface TarotCard {
   image: string           // 앞면
   backImage: string       // tarot_back.jpg
   isFlipped: boolean
+
+  meaning?: string          // 카드별 의미
+  short?: string            // 카드 요약
+  kname?: string            // 한국어 이름
+  categoryHints?: Record<string, string>
 }

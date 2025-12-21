@@ -64,19 +64,23 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, reactive } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, onMounted, reactive, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 import CardTile from '@/components/CardTile.vue'
 import AppHeader from '@/components/layout/AppHeader.vue'
 import AppBottom from '@/components/layout/AppBottom.vue'
 
-import tarotDeck from '@/data/tarotDeck.json'
+// import tarotDeck from '@/data/tarotDeck.json'
 import type { TarotCard } from '@/data/tarotTypes'
 import { createDisplayDeck } from '@/util/decks'
 
+import { useAppStore } from '@/store/useAppStore'
+const store = useAppStore()
 
-const router = useRouter()
+
+const router = useRouter()  // 이동용
+const route = useRoute()    // 현재 쿼리 읽기용
 
 /** 화면에 보여질 카드 */
 const displayCards = ref<TarotCard[]>([])
@@ -131,7 +135,7 @@ function shuffleAnimation(index = 0): void {
   pos.scale = 1
   pos.translateY = '0px'
 
-  setTimeout(() => shuffleAnimation(index + 1), 60)
+  setTimeout(() => shuffleAnimation(index + 1), 30)
 }
 
 /** 카드 스타일 */
@@ -159,14 +163,18 @@ function toggleSelect(cardId: string) {
   }
 }
 
+// const currentMode = computed(() => (route.query.mode as string) || 'general')
+
 /** 결과 화면 이동 */
 function goNext() {
-  router.push({
-    name: 'Result',
-    state: {
-      cards: selectedCards.value
-    }
-  })
+  // 선택 카드가 3장이 맞는지 체크
+  if (selectedCards.value.length !== 3) return
+
+  // Pinia 스토어에 선택 카드 저장
+  store.setSelectedCards(selectedCards.value)
+
+  // 결과 화면으로 이동
+  router.push({ name: 'Result' })
 }
 </script>
 

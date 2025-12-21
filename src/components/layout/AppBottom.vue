@@ -4,13 +4,10 @@
       카드를 {{ max }}장 선택해 주세요.
     </p>
 
-    <button
-      v-else
-      class="next"
-      @click="$emit('confirm')"
-    >
-      모두 고르셨나요?
-    </button>
+    <div v-else class="app__bottom--ready">
+      <p class="app__bottom--text">모두 고르셨나요?</p>
+      <button class="next" @click="$emit('confirm')">다음으로 →</button>
+    </div>
   </footer>
 </template>
 
@@ -30,7 +27,8 @@ defineEmits<{
   position: fixed; z-index: 100; bottom: 7.2vw; left: 50%; transform: translateX(-50%);
   padding: 4vw;
   border-radius: 2vw;
-  background: rgba(36, 37, 80, 0.38);
+  background: rgba(36, 37, 80, 0.58);
   &--text {margin: 0; padding: 0; line-height: 3.5vw; color: #fff; font-size: 3.8vw;}
+  &--ready {display: flex; align-items: center; gap: 4.5vw; white-space: nowrap;}
 }
 </style>
