@@ -64,8 +64,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, reactive, computed } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { ref, onMounted, reactive } from 'vue'
+import { useRouter } from 'vue-router'
 
 import CardTile from '@/components/CardTile.vue'
 import AppHeader from '@/components/layout/AppHeader.vue'
@@ -80,7 +80,7 @@ const store = useAppStore()
 
 
 const router = useRouter()  // 이동용
-const route = useRoute()    // 현재 쿼리 읽기용
+//const route = useRoute()    // 현재 쿼리 읽기용
 
 /** 화면에 보여질 카드 */
 const displayCards = ref<TarotCard[]>([])

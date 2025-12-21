@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter, useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { computed, watch } from 'vue'
 import { useAppStore } from '@/store/useAppStore'
 import TopBar from '@/components/TopBar.vue'
@@ -51,10 +51,10 @@ import CardTile from '@/components/CardTile.vue'
 // --- 스토어 & 라우터 ---
 const store = useAppStore()
 const router = useRouter()
-const route = useRoute()
+// const route = useRoute()
 
 // --- 선택 카드 3장 ---
-const mode = (route.query.mode as string) || 'general'
+// const mode = (route.query.mode as string) || 'general'
 const selectedCards = computed(() => store.selectedCards)
 
 // 선택 카드가 정상적으로 들어오는지 확인
