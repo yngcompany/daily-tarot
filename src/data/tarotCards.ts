@@ -5,17 +5,21 @@
 ================================ */
 export interface TarotCardMeaning {
   id: string
-  name: string        // 영문 카드명
-  kname: string       // 한글 카드명
-  core: string        // 핵심 키워드
-  short: string       // 한 줄 해석
+  name: string
+  kname: string
+  core: string
+  short: string
   categoryHints: {
     love: string
     money: string
     career: string
     health: string
   }
+
+  // ✅ 분기용 힌트 (로직에 강제 X)
+  arcana: 'major' | 'minor'
 }
+
 
 /* ===============================
    2. 메이저 아르카나 (22장)
@@ -23,6 +27,7 @@ export interface TarotCardMeaning {
 export const MAJOR_ARCANA: TarotCardMeaning[] = [
   {
     id: 'fool',
+    arcana: 'major',
     name: 'Fool',
     kname: '바보',
     core: '시작, 자유, 순수',
@@ -36,6 +41,7 @@ export const MAJOR_ARCANA: TarotCardMeaning[] = [
   },
   {
     id: 'magician',
+    arcana: 'major',
     name: 'Magician',
     kname: '마법사',
     core: '능력, 의지, 창조',
@@ -46,17 +52,13 @@ export const MAJOR_ARCANA: TarotCardMeaning[] = [
       career: '능력을 인정받을 기회입니다.',
       health: '컨디션이 빠르게 회복됩니다.'
     }
-  },
-
-  // ⚠️ 나머지 메이저 20장도 여기 계속 추가
-  
+  }
 ]
+
 
 /* ===============================
    3. 마이너 아르카나 정의
 ================================ */
-
-// 4개의 슈트
 const MINOR_SUITS = [
   { key: 'wands', name: 'Wands', kname: '완드' },
   { key: 'cups', name: 'Cups', kname: '컵' },
@@ -64,7 +66,6 @@ const MINOR_SUITS = [
   { key: 'pentacles', name: 'Pentacles', kname: '펜타클' }
 ] as const
 
-// 14개의 랭크
 const MINOR_RANKS = [
   { key: 'ace', name: 'Ace', kname: '에이스' },
   { key: 'two', name: 'Two', kname: '2' },
@@ -82,6 +83,7 @@ const MINOR_RANKS = [
   { key: 'king', name: 'King', kname: '왕' }
 ] as const
 
+
 /* ===============================
    4. 마이너 아르카나 생성 (56장)
 ================================ */
@@ -92,6 +94,7 @@ function createMinorArcana(): TarotCardMeaning[] {
     for (const rank of MINOR_RANKS) {
       cards.push({
         id: `${rank.key}_${suit.key}`,
+        arcana: 'minor',
         name: `${rank.name} of ${suit.name}`,
         kname: `${suit.kname} ${rank.kname}`,
         core: '일상, 현실, 경험',
@@ -110,6 +113,7 @@ function createMinorArcana(): TarotCardMeaning[] {
 }
 
 export const MINOR_ARCANA = createMinorArcana()
+
 
 /* ===============================
    5. 전체 78장 의미 데이터

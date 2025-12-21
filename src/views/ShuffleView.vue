@@ -49,6 +49,7 @@
           :card="card"
           :selected="selectedCards.some(c => c.id === card.id)"
           :style="getCardStyle(card)"
+          :isFlipped="false"
           @toggle="toggleSelect"
         />
       </div>
@@ -66,95 +67,55 @@
 import { ref, onMounted, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
-import { createDisplayDeck } from '@/util/decks'
-import { TAROT_MEANINGS } from '@/data/tarotCards'
-import type { TarotCardMeaning } from '@/data/tarotCards'
-
 import CardTile from '@/components/CardTile.vue'
 import AppHeader from '@/components/layout/AppHeader.vue'
 import AppBottom from '@/components/layout/AppBottom.vue'
 
+import tarotDeck from '@/data/tarotDeck.json'
+import type { TarotCard } from '@/data/tarotTypes'
+import { createDisplayDeck } from '@/util/decks'
+
+
 const router = useRouter()
 
-/** 78장 전체 덱 */
-const displayCards = ref<TarotCardMeaning[]>([])
+/** 화면에 보여질 카드 */
+const displayCards = ref<TarotCard[]>([])
 
-/** 사용자가 고른 카드 */
-const selectedCards = ref<TarotCardMeaning[]>([])
+/** 사용자가 선택한 카드 */
+const selectedCards = ref<TarotCard[]>([])
 
 const isReady = ref(false)
 
-// 카드 위치 + 초기 상태 관리
-const cardPositions = reactive<Record<string, { opacity: number; scale: number; translateY: string }>>({})
+/** 카드 애니메이션 상태 */
+const cardPositions = reactive<
+  Record<string, { opacity: number; scale: number; translateY: string }>
+>({})
 
 onMounted(() => {
-  console.log('TAROT_CARDS length:', TAROT_MEANINGS.length)
-  
-  displayCards.value = createDisplayDeck(78)
+  displayCards.value = createDisplayDeck(78) // 1개 인자만 전달
 
-  // 초기 상태: 모든 카드 안보이게 + 살짝 위로
-  displayCards.value.forEach((card: TarotCardMeaning) => {
-    cardPositions[card.id] = { opacity: 0, scale: 0.5, translateY: '-70px' }
+  displayCards.value.forEach(card => {
+    cardPositions[card.id] = {
+      opacity: 0,
+      scale: 0.5,
+      translateY: '-70px'
+    }
+    card.isFlipped = true;
   })
 
-  // DOM이 다 그려진 후, 순차 애니메이션 시작
   requestAnimationFrame(() => {
-    setTimeout(() => {
-      shuffleAnimation()
-    }, 1000)
+    setTimeout(() => shuffleAnimation(), 800)
   })
 })
 
-/** 셔플 애니메이션 */
-// 재귀형으로 한 장씩 순차 등장
-// function shuffleAnimation(index = 0) {
-//   if (index >= displayCards.value.length) {
-//     isReady.value = true
-//     return
-//   }
-
-//   const card = displayCards.value[index]
-//   if (!card) return shuffleAnimation(index + 1) // card 없으면 다음 카드로
-
-//   const pos = cardPositions[card.id]
-//   if (!pos) return shuffleAnimation(index + 1) // pos 없으면 다음 카드로
-
-//   pos.opacity = 1
-//   pos.scale = 1
-//   pos.translateY = '0px'
-
-//   setTimeout(() => shuffleAnimation(index + 1), 80)
-// }
-// function shuffleAnimation(index = 0) {
-//   if (index >= displayCards.value.length) {
-//     isReady.value = true
-//     return
-//   }
-
-//   const card = displayCards.value[index]
-//   const pos = cardPositions[card.id]
-
-//   if (!card || !pos) {
-//     shuffleAnimation(index + 1)
-//     return
-//   }
-
-//   pos.opacity = 1
-//   pos.scale = 1
-//   pos.translateY = '0px'
-
-//   setTimeout(() => shuffleAnimation(index + 1), 80)
-// }
-
+/** 셔플 애니메이션 (기존 그대로) */
 function shuffleAnimation(index = 0): void {
-  const cards = displayCards.value
-
-  if (index >= cards.length) {
+  if (index >= displayCards.value.length) {
     isReady.value = true
     return
   }
 
-  const card = cards[index]
+  const card = displayCards.value[index]
   if (!card) {
     shuffleAnimation(index + 1)
     return
@@ -170,45 +131,25 @@ function shuffleAnimation(index = 0): void {
   pos.scale = 1
   pos.translateY = '0px'
 
-  setTimeout(() => {
-    shuffleAnimation(index + 1)
-  }, 80)
+  setTimeout(() => shuffleAnimation(index + 1), 60)
 }
 
-
-
-// 카드 스타일 계산
-function getCardStyle(card: TarotCardMeaning) {
-  const pos = cardPositions[card.id] || { opacity: 0, scale: 0.5, translateY: '-20px' }
+/** 카드 스타일 */
+function getCardStyle(card: TarotCard) {
+  const pos = cardPositions[card.id]
   return {
-    opacity: pos.opacity,
-    transform: `scale(${pos.scale}) translateY(${pos.translateY})`,
+    opacity: pos?.opacity ?? 0,
+    transform: `scale(${pos?.scale ?? 0.5}) translateY(${pos?.translateY ?? '-20px'})`,
     transition: 'all 0.3s ease'
   }
 }
 
-// 카드 선택 관련 함수
-// function toggleSelect(cardId: string) {
-//   const card = displayCards.value.find(c => c.id === cardId)
-//   if (!card) return
-
-//   const index = selectedCards.value.findIndex(c => c.id === cardId)
-//   if (index >= 0) {
-//     selectedCards.value.splice(index, 1)
-//   } else {
-//     if (selectedCards.value.length >= 3) return
-//     selectedCards.value.push(card)
-//   }
-// }
+/** 카드 선택 */
 function toggleSelect(cardId: string) {
-  const card = displayCards.value.find(
-    (c: TarotCardMeaning) => c.id === cardId
-  )
+  const card = displayCards.value.find(c => c.id === cardId)
   if (!card) return
 
-  const index = selectedCards.value.findIndex(
-    (c: TarotCardMeaning) => c.id === cardId
-  )
+  const index = selectedCards.value.findIndex(c => c.id === cardId)
 
   if (index >= 0) {
     selectedCards.value.splice(index, 1)
@@ -218,13 +159,18 @@ function toggleSelect(cardId: string) {
   }
 }
 
+/** 결과 화면 이동 */
 function goNext() {
   router.push({
     name: 'Result',
-    state: { cards: selectedCards.value }
+    state: {
+      cards: selectedCards.value
+    }
   })
 }
 </script>
+
+
 
 <style>
 @import '@/styles/views/shuffle.scss';

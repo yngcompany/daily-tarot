@@ -149,7 +149,7 @@
     .card {
       aspect-ratio: 2 / 3;
       border-radius: 1.2vw;
-      background: linear-gradient(135deg, #ffffff, #f7f7f7);
+      // background: linear-gradient(135deg, #ffffff, #f7f7f7);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -161,7 +161,7 @@
       text-align: center;
       line-height: 1.2;
 
-      border: 1px solid #dedede;
+      // border: 1px solid #dedede;
 
       user-select: none;
       -webkit-tap-highlight-color: transparent;
@@ -185,21 +185,16 @@
         width: 100%;
         height: 100%;
         transform-style: preserve-3d;
+        transform: rotateY(0deg); /* 항상 앞면이 기본 */
         transition: transform 0.6s ease;
       }
 
-      .card.flipped .card-inner {
-        transform: rotateY(180deg);
-      }
-    }
-
-    .card {
-      // transition: opacity 0.3s ease, transform 0.3s ease;
       &__face {
         position: absolute;
         inset: 0;
         border-radius: 0.8vw;
         backface-visibility: hidden;
+        transform: rotateY(0);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -207,13 +202,27 @@
         overflow: hidden;
       }
       &__front {
-        background: linear-gradient(135deg, #ffffff, #f3f6ff);
+        // background: linear-gradient(135deg, #c8a2a2, #e96262);
+        img { max-height: 100%; }
       }
       &__back {
-        background: linear-gradient(135deg, #cfd9ff, #9fb3ff);
+        padding: 0;
+        backface-visibility: hidden;
         transform: rotateY(180deg);
+        img {  max-height: 100%; }
       }
+
+      &.flipped .card-inner {transform: rotateY(180deg);}
+      // .card.flipped .card-inner {
+      //   transform: rotateY(180deg); /* 뒤집히면 뒷면 보임 */
+      // }
     }
+
+
+    // .card {
+    //   // transition: opacity 0.3s ease, transform 0.3s ease;
+    
+    // }
   }
 }
 

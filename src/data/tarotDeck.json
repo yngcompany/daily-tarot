@@ -1,0 +1,178 @@
+[
+  {
+    "id": "major-00",
+    "arcana": "major",
+    "number": 0,
+    "name": "The Fool",
+    "name_kr": "광대",
+    "image": "/images/tarot/major/tarot_major_00_Fool.jpg"
+  },
+  {
+    "id": "major-01",
+    "arcana": "major",
+    "number": 1,
+    "name": "The Magician",
+    "name_kr": "마법사",
+    "image": "/images/tarot/major/tarot_major_01_Magician.jpg"
+  },
+  {
+    "id": "major-02",
+    "arcana": "major",
+    "number": 2,
+    "name": "The High Priestess",
+    "name_kr": "여사제",
+    "image": "/images/tarot/major/tarot_major_02_High_Priestess.jpg"
+  },
+  {
+    "id": "major-03",
+    "arcana": "major",
+    "number": 3,
+    "name": "The Empress",
+    "name_kr": "여황제",
+    "image": "/images/tarot/major/tarot_major_03_Empress.jpg"
+  },
+  {
+    "id": "major-04",
+    "arcana": "major",
+    "number": 4,
+    "name": "The Emperor",
+    "name_kr": "황제",
+    "image": "/images/tarot/major/tarot_major_04_Emperor.jpg"
+  },
+  {
+    "id": "major-05",
+    "arcana": "major",
+    "number": 5,
+    "name": "The Hierophant",
+    "name_kr": "교황",
+    "image": "/images/tarot/major/tarot_major_05_Hierophant.jpg"
+  },
+  {
+    "id": "major-06",
+    "arcana": "major",
+    "number": 6,
+    "name": "The Lovers",
+    "name_kr": "연인",
+    "image": "/images/tarot/major/tarot_major_06_Lovers.jpg"
+  },
+  {
+    "id": "major-07",
+    "arcana": "major",
+    "number": 7,
+    "name": "The Chariot",
+    "name_kr": "전차",
+    "image": "/images/tarot/major/tarot_major_07_Chariot.jpg"
+  },
+  {
+    "id": "major-08",
+    "arcana": "major",
+    "number": 8,
+    "name": "Strength",
+    "name_kr": "힘",
+    "image": "/images/tarot/major/tarot_major_08_Strength.jpg"
+  },
+  {
+    "id": "major-09",
+    "arcana": "major",
+    "number": 9,
+    "name": "The Hermit",
+    "name_kr": "은둔자",
+    "image": "/images/tarot/major/tarot_major_09_Hermit.jpg"
+  },
+  {
+    "id": "major-10",
+    "arcana": "major",
+    "number": 10,
+    "name": "Wheel of Fortune",
+    "name_kr": "운명의 수레바퀴",
+    "image": "/images/tarot/major/tarot_major_10_Wheel_of_Fortune.jpg"
+  },
+  {
+    "id": "major-11",
+    "arcana": "major",
+    "number": 11,
+    "name": "Justice",
+    "name_kr": "정의",
+    "image": "/images/tarot/major/tarot_major_11_Justice.jpg"
+  },
+  {
+    "id": "major-12",
+    "arcana": "major",
+    "number": 12,
+    "name": "The Hanged Man",
+    "name_kr": "매달린 남자",
+    "image": "/images/tarot/major/tarot_major_12_Hanged_Man.jpg"
+  },
+  {
+    "id": "major-13",
+    "arcana": "major",
+    "number": 13,
+    "name": "Death",
+    "name_kr": "죽음",
+    "image": "/images/tarot/major/tarot_major_13_Death.jpg"
+  },
+  {
+    "id": "major-14",
+    "arcana": "major",
+    "number": 14,
+    "name": "Temperance",
+    "name_kr": "절제",
+    "image": "/images/tarot/major/tarot_major_14_Temperance.jpg"
+  },
+  {
+    "id": "major-15",
+    "arcana": "major",
+    "number": 15,
+    "name": "The Devil",
+    "name_kr": "악마",
+    "image": "/images/tarot/major/tarot_major_15_Devil.jpg"
+  },
+  {
+    "id": "major-16",
+    "arcana": "major",
+    "number": 16,
+    "name": "The Tower",
+    "name_kr": "탑",
+    "image": "/images/tarot/major/tarot_major_16_Tower.jpg"
+  },
+  {
+    "id": "major-17",
+    "arcana": "major",
+    "number": 17,
+    "name": "The Star",
+    "name_kr": "별",
+    "image": "/images/tarot/major/tarot_major_17_Star.jpg"
+  },
+  {
+    "id": "major-18",
+    "arcana": "major",
+    "number": 18,
+    "name": "The Moon",
+    "name_kr": "달",
+    "image": "/images/tarot/major/tarot_major_18_Moon.jpg"
+  },
+  {
+    "id": "major-19",
+    "arcana": "major",
+    "number": 19,
+    "name": "The Sun",
+    "name_kr": "태양",
+    "image": "/images/tarot/major/tarot_major_19_Sun.jpg"
+  },
+  {
+    "id": "major-20",
+    "arcana": "major",
+    "number": 20,
+    "name": "Judgement",
+    "name_kr": "심판",
+    "image": "/images/tarot/major/tarot_major_20_Judgement.jpg"
+  },
+  {
+    "id": "major-21",
+    "arcana": "major",
+    "number": 21,
+    "name": "The World",
+    "name_kr": "세계",
+    "image": "/images/tarot/major/tarot_major_21_World.jpg"
+  }
+]

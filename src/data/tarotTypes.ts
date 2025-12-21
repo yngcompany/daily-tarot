@@ -9,4 +9,5 @@ export interface TarotCard {
   suit?: MinorSuit        // minor 전용
   image: string           // 앞면
   backImage: string       // tarot_back.jpg
+  isFlipped: boolean
 }

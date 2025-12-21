@@ -1,0 +1,22 @@
+{
+  "three_card": {
+    "name": "3 카드 스프레드",
+    "positions": [
+      {
+        "key": "past",
+        "label": "과거",
+        "description": "이 문제의 배경"
+      },
+      {
+        "key": "present",
+        "label": "현재",
+        "description": "현재 상황"
+      },
+      {
+        "key": "future",
+        "label": "미래",
+        "description": "앞으로의 흐름"
+      }
+    ]
+  }
+}
