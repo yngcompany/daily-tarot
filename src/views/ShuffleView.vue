@@ -49,7 +49,7 @@
           :card="card"
           :selected="selectedCards.some(c => c.id === card.id)"
           :style="getCardStyle(card)"
-          :isFlipped="false"
+          :isFlipped="true"
           @toggle="toggleSelect"
         />
       </div>
